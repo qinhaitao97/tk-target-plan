@@ -1,0 +1,16 @@
+{
+  "name": "TK-TARGET-PLAN",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "puppeteer": "^17.1.0",
+    "superagent": "^8.0.0",
+    "superagent-proxy": "^3.0.0"
+  }
+}
