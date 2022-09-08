@@ -42,7 +42,7 @@ module.exports = () => {
     commission: data_line[3] || 15,
     products: uniq_products,
     creators: [],
-    resultFile: `${date}_${data_line[0]}_${result_list.length}`,
+    resultFile: `${date}_${data_line[0]}_${result_list.length}.txt`,
     tags: [],
   }
 
