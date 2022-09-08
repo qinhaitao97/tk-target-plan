@@ -43,7 +43,7 @@ module.exports = () => {
     products: uniq_products,
     creators: [],
     resultFile: `${date}_${data_line[0]}_${result_list.length}`,
-    tags: [ data_line[5] ],
+    tags: [],
   }
 
   console.log('settings.json is ready now.')
