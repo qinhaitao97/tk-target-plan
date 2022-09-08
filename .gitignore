@@ -2,3 +2,4 @@
 node_modules/
 result/*.txt
 source/cookies.txt
+file/*.xlsx

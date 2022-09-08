@@ -9,6 +9,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dayjs": "^1.11.5",
+    "node-xlsx": "^0.21.0",
     "puppeteer": "^17.1.0",
     "superagent": "^8.0.0",
     "superagent-proxy": "^3.0.0"
