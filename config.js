@@ -13,7 +13,7 @@ module.exports = {
     // 运行结果输出目录
     RESULT_DIR: './result',
     // 登录等待时间(秒)
-    LOGIN_TIME: 1 * 60,
+    LOGIN_TIME: 3 * 60,
     // 每个计划之间的间隔时间, 例如 [30, 60] 表示间隔 30~60 秒
     SLEEP_PER_PLAN: [1, 3],
     // 每次 checkProductId 或 checkUsername 之间的间隔时间, 例如 [0.5, 2.5] 表示间隔 0.5~2.5 秒
