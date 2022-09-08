@@ -1,6 +1,6 @@
 const { sleepRandom } = require("../utils/request");
 const checkProductId = require("./checkProductId");
-const { SLEEP_PER_CHECK } = require("../config");
+const { SLEEP_PER_CHECK, MAX_PRODUCT_COUNT } = require("../config");
 
 
 module.exports = {
@@ -9,10 +9,10 @@ module.exports = {
     
         while (true) {
             await sleepRandom(...SLEEP_PER_CHECK);
-    
+
             let msg = "", 
                 product_id = _products_ready.pop();
-            if (!product_id) {break;};
+            if ((!product_id) || (_products_flag_1.length >= MAX_PRODUCT_COUNT)) {break;};
     
             let flag = await checkProductId(product_id);
     

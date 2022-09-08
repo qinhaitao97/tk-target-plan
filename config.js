@@ -15,7 +15,9 @@ module.exports = {
     // 每次 checkProductId 或 checkUsername 之间的间隔时间, 例如 [0.5, 2.5] 表示间隔 0.5~2.5 秒
     SLEEP_PER_CHECK: [0.3, 1.5],
     // 单个计划最多添加达人数量
-    MAX_USERNAME_COUNT: 30,
+    MAX_USERNAME_COUNT: 5,
+    // 最多添加产品数量
+    MAX_PRODUCT_COUNT: 100,
     // 第一个计划的索引(一般情况下保持默认值 0 即可)
     FIRST_PLAN_INDEX: 0,
 }
