@@ -1,5 +1,5 @@
 const save = require("./save");
-const { SLEEP_PER_PLAN } = require("./config");
+const { SLEEP_PER_PLAN, MAX_USERNAME_COUNT } = require("./config");
 const uploadPlan = require("./spiders/uploadPlan");
 const { sleepRandom } = require("./utils/request");
 const { initialize, getDatetime } = require("./utils/base");
@@ -30,10 +30,11 @@ let main = async () => {
             _success_plan_count += 1;
         } else if (flag === 2) {
             console.log(`\n---------- 计划已满, 程序即将退出 ----------\n`);
+            _usernames_flag_1.splice(-MAX_USERNAME_COUNT, MAX_USERNAME_COUNT);
             _stop_plan_flag = true;
         } else {
             console.log(`\n---------- 上传计划请求失败 ----------\n`);
-            // 上传计划请求失败时, _current_plan 回到上一状态
+            _usernames_flag_1.splice(-MAX_USERNAME_COUNT, MAX_USERNAME_COUNT);
             _current_plan -= 1;
         }
 
