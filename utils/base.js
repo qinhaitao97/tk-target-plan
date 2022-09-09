@@ -31,6 +31,7 @@ module.exports = {
                 _usernames_flag_1: [],
                 _usernames_flag_2: [],
                 _usernames_flag_3: [],
+                _failed_user_ids: null,
                 _current_plan: FIRST_PLAN_INDEX,
                 _success_plan_count: 0,
                 _stop_plan_flag: false,

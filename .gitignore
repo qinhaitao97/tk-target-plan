@@ -2,4 +2,6 @@
 node_modules/
 result/*.txt
 source/cookies.txt
+source/settings.json
 file/*.xlsx
+source/开发文档/

@@ -34,7 +34,6 @@ let main = async () => {
             _stop_plan_flag = true;
         } else {
             console.log(`\n---------- 上传计划请求失败 ----------\n`);
-            _usernames_flag_1.splice(-MAX_USERNAME_COUNT, MAX_USERNAME_COUNT);
             _current_plan -= 1;
         }
 
