@@ -34,6 +34,7 @@ module.exports = () => {
 
   const settings = {
     area: 'Malaysia',
+    shop: data_line[0],
     email: data_line[1],
     password: data_line[2],
     maxPlanCount: 100,
