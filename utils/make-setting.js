@@ -15,7 +15,7 @@ module.exports = () => {
   const data = xlsx.parse(path.join(BASE_DIR, `${FILE_DIR}/${file_name}`))[0].data
   const data_line = data[1]
   const date = dayjs().format('YYYYMMDD')
-  const products = data_line[6].split('、').filter(id => id)
+  const products = data_line[6].split('、').filter(id => id).map(id => id.trim())
   if (!products.length) {
     console.error('没有计划产品')
     return
