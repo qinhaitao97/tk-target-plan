@@ -29,7 +29,6 @@ module.exports = () => {
   })
   if (uniq_products.length < MAX_PRODUCT_COUNT) {
     console.error(`计划产品不足 ${uniq_products.length} / ${MAX_PRODUCT_COUNT}`)
-    return
   }
 
   console.log(data_line)
