@@ -15,7 +15,7 @@ module.exports = () => {
   const data = xlsx.parse(path.join(BASE_DIR, `${FILE_DIR}/${file_name}`))[0].data
   const data_line = data[1]
   const date = dayjs().format('YYYYMMDD')
-  const products = data_line[6].split('、').filter(id => id).map(id => id.trim())
+  const products = data_line[7].split('、').filter(id => id).map(id => id.trim())
   if (!products.length) {
     console.error('没有计划产品')
     return
@@ -32,18 +32,19 @@ module.exports = () => {
     return
   }
 
+  console.log(data_line)
   const settings = {
-    area: 'Malaysia',
-    shop: data_line[0],
-    email: data_line[1],
-    password: data_line[2],
+    area: data_line[0],
+    shop: data_line[1],
+    email: data_line[2],
+    password: data_line[3],
     maxPlanCount: 100,
     planNamePrefix: `${date}_`,
-    period: data_line[4] || 10,
-    commission: data_line[3] || 15,
+    period: data_line[5] || 10,
+    commission: data_line[4] || 15,
     products: uniq_products,
     creators: [],
-    resultFile: `${date}_${data_line[0]}_${result_list.length}.txt`,
+    resultFile: `${date}_${data_line[1]}_${result_list.length}.txt`,
     tags: [],
   }
 
