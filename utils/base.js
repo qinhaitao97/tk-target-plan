@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const getCookie = require("./cookie");
+const { REGION_MAP } = require("./constant");
 const { BASE_DIR, SETTINGS_PATH, FIRST_PLAN_INDEX } = require("../config");
 
 
@@ -19,8 +20,16 @@ module.exports = {
     async initialize() {
         console.log(`\n---------- 正在初始化程序 ----------\n`);
 
-        let settings = loadSettings(),
-            cookie = await getCookie(),
+        let settings = loadSettings();
+        global._global_site = settings.area.startsWith("Global-");
+        console.log(`是否为全球站: ${_global_site}`);
+
+        global._account_region = _global_site ? REGION_MAP[settings.area.replace("Global-", "").trim()] : "";
+        if (_account_region === undefined) {
+            throw Error("settings.area 错误");
+        }
+
+        let cookie = await getCookie(),
             obj = {
                 _settings: settings,
                 _products_ready: settings.products.reverse(),   // 反转数组, 使得 pop 可以取第一个元素

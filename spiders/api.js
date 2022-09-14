@@ -1,0 +1,18 @@
+module.exports = {
+    "REFERER_1": "https://affiliate.tiktok.com/seller/dashboard/home",
+    "REFERER_2": "https://affiliate.tiktokglobalshop.com/seller/dashboard/home",
+    "ORIGIN_1": "https://affiliate.tiktok.com",
+    "ORIGIN_2": "https://affiliate.tiktokglobalshop.com",
+    "CHECK_COOKIE_1": "https://affiliate.tiktok.com/api/v1/affiliate/account/info?account_type=1&avatar_param[format]=webp&avatar_param[height]=84&avatar_param[width]=84",
+    "CHECK_COOKIE_2": "https://api16-normal-useast1a.tiktokglobalshop.com/api/v1/affiliate/account/info?account_type=1&avatar_param[format]=webp&avatar_param[height]=84&avatar_param[width]=84",
+    "LOGIN_1": "https://seller.tiktok.com/account/login",
+    "LOGIN_2": "https://seller.tiktokglobalshop.com/account/login",
+    "CHECK_PID_1": "https://affiliate.tiktok.com/api/v1/affiliate/product/search",
+    "CHECK_PID_2": "https://api16-normal-useast1a.tiktokglobalshop.com/api/v1/affiliate/product/search",
+    "GET_UID_1": "https://affiliate.tiktok.com/api/v1/affiliate/creator/search",
+    "GET_UID_2": "https://api16-normal-useast1a.tiktokglobalshop.com/api/v1/affiliate/creator/search",
+    "CHECK_UNAME_1": "https://affiliate.tiktok.com/api/v1/affiliate/commission_unique/check",
+    "CHECK_UNAME_2": "https://api16-normal-useast1a.tiktokglobalshop.com/api/v1/affiliate/commission_unique/check",
+    "UPLOAD_PLAN_1": "https://affiliate.tiktok.com/api/v2/affiliate/target_plan/create",
+    "UPLOAD_PLAN_2": "https://api16-normal-useast1a.tiktokglobalshop.com/api/v2/affiliate/target_plan/create",
+}

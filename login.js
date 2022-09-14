@@ -2,14 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const puppeteer = require("puppeteer");
 const { BASE_DIR, LOGIN_TIME } = require("./config");
-
-
-let startOptions = {
-    headless: false,
-    executable_path: path.join(BASE_DIR, "source/chrome-103/Application/chrome.exe"),
-    url: "https://seller.tiktok.com/",
-    timeout: 30 * 1000,
-}
+const { LOGIN_1, LOGIN_2 } = require("./spiders/api");
 
 
 let getRequestCookies = async (page) => {
@@ -24,7 +17,14 @@ let getRequestCookies = async (page) => {
 
 
 module.exports = async () => {
-    let init_params = {
+    const startOptions = {
+        headless: false,
+        executable_path: path.join(BASE_DIR, "source/chrome-103/Application/chrome.exe"),
+        url: _global_site ? LOGIN_2 : LOGIN_1,
+        timeout: 30 * 1000,
+    }
+
+    const init_params = {
         headless: startOptions.headless,
         // executablePath: startOptions.executable_path,
         dumpio: true,

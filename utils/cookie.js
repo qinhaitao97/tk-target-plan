@@ -1,8 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const login = require("../login");
 const { requestGet } = require("./request");
 const { BASE_DIR, COOKIE_PATH } = require("../config");
-const login = require("../login");
+const { CHECK_COOKIE_1, CHECK_COOKIE_2, REFERER_1, REFERER_2 } = require("../spiders/api");
 
 
 let loadCookie= () => {
@@ -14,14 +15,14 @@ writeCookie = (cookie) => {
 checkCookie = async (cookie) => {
     let flag = false,
         cookie_ = cookie ?? "",
-        url = "https://affiliate.tiktok.com/api/v1/affiliate/account/info?account_type=1&avatar_param[format]=webp&avatar_param[height]=84&avatar_param[width]=84&aid=4331",
+        url = _global_site ? CHECK_COOKIE_2 : CHECK_COOKIE_1,
         headers = {
             "authority": "affiliate.tiktok.com",
             "accept": "*/*",
             "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
             "cache-control": "no-cache",
             "pragma": "no-cache",
-            "referer": "https://affiliate.tiktok.com/seller/dashboard/home",
+            "referer": _global_site ? REFERER_2 : REFERER_1,
             "sec-ch-ua": "\"Chromium\";v=\"104\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"104\"",
             "sec-ch-ua-mobile": "?0",
             "sec-ch-ua-platform": "\"Windows\"",
@@ -33,9 +34,8 @@ checkCookie = async (cookie) => {
         };
 
     try{
-        let _data = await requestGet({url, headers, params: {}}),
-            user_id = _data.user_id;
-        if (user_id) {
+        let _data = await requestGet({url, headers, params: {}});
+        if (_data.user_id && _data.region) {
             flag = true;
         }
     } catch(err) {

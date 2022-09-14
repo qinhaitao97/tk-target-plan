@@ -1,5 +1,6 @@
 const getUserId = require("./getUserId");
 const { getHeaders, getParams, requestPost } = require("../utils/request");
+const { CHECK_UNAME_1, CHECK_UNAME_2 } = require("./api");
 
 
 module.exports = async (username, product_ids) => {
@@ -23,13 +24,11 @@ module.exports = async (username, product_ids) => {
         return {flag: 4, user_id};
     }
 
-    let url = "https://affiliate.tiktok.com/api/v1/affiliate/commission_unique/check",
+    let url = _global_site ? CHECK_UNAME_2 : CHECK_UNAME_1,
         headers = getHeaders(),
         params = getParams(),
         data = {
-            "creator_ids": [
-                user_id,
-            ],
+            "creator_ids": [user_id],
             "product_ids": product_ids,
         };
 

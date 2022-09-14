@@ -1,6 +1,7 @@
 const superagent = require("superagent");
 require("superagent-proxy")(superagent);
 const { VPN_HOST, VPN_PORT } = require("../config");
+const { ORIGIN_1, ORIGIN_2, REFERER_1, REFERER_2 } = require("../spiders/api");
 
 
 module.exports = {
@@ -18,9 +19,9 @@ module.exports = {
             "accept-language": "zh-CN,zh;q=0.9",
             "cache-control": "no-cache",
             "content-type": "application/json",
-            "origin": "https://affiliate.tiktok.com",
+            "origin": _global_site ? ORIGIN_2 : ORIGIN_1,
             "pragma": "no-cache",
-            "referer": "https://affiliate.tiktok.com/seller/dashboard/plan/target-plan/add-target-plan",
+            "referer": _global_site ? REFERER_2 : REFERER_1,
             "sec-ch-ua": "\"Chromium\";v=\"104\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"104\"",
             "sec-ch-ua-mobile": "?0",
             "sec-ch-ua-platform": "\"Windows\"",
@@ -35,8 +36,7 @@ module.exports = {
     getParams() {
         return {
             "user_language": "en",
-            "shop_region": "MY",
-            "aid": "4331",
+            "shop_region": _account_region,
             "app_name": "i18n_ecom_alliance",
             "device_id": "0",
             "device_platform": "web",
@@ -56,8 +56,10 @@ module.exports = {
             .set(options.headers)
             .query(options.params)
             .send(JSON.stringify(options.data))
-            .timeout({deadline: 20 * 1000})
-            .proxy(`socks5h://${VPN_HOST}:${VPN_PORT}`);
+            .timeout({deadline: 20 * 1000});
+        if (!_global_site && VPN_HOST && VPN_PORT) {
+            promise = promise.proxy(`socks5h://${VPN_HOST}:${VPN_PORT}`);
+        }
         return (await promise.type("application/json")).body;
     },
 
@@ -66,8 +68,10 @@ module.exports = {
             .get(options.url)
             .set(options.headers)
             .query(options.params)
-            .timeout({deadline: 20 * 1000})
-            .proxy(`socks5h://${VPN_HOST}:${VPN_PORT}`);
+            .timeout({deadline: 20 * 1000});
+        if (!_global_site && VPN_HOST && VPN_PORT) {
+            promise = promise.proxy(`socks5h://${VPN_HOST}:${VPN_PORT}`);
+        }
         return (await promise.type("application/json")).body;
     },
 }

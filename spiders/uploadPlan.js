@@ -1,6 +1,7 @@
 const checkUsernames = require("./checkUsernames");
-const { getHeaders, getParams, requestPost } = require("../utils/request");
 const { MAX_USERNAME_COUNT } = require("../config");
+const { UPLOAD_PLAN_1, UPLOAD_PLAN_2 } = require("./api");
+const { getHeaders, getParams, requestPost } = require("../utils/request");
 
 
 module.exports = async (meta_plans) => {
@@ -18,10 +19,10 @@ module.exports = async (meta_plans) => {
         _stop_plan_flag=true;
     };
 
-    console.log(`\n---------- 正在上传今日第 ${_current_plan} 个计划 ----------\n`);
+    console.log(`\n---------- 正在上传今日第${_current_plan}个计划 ----------\n`);
 
     let flag,
-        url = "https://affiliate.tiktok.com/api/v2/affiliate/target_plan/create",
+        url = UPLOAD_PLAN_1,
         params = getParams(),
         headers = getHeaders(),
         data = {
@@ -34,6 +35,11 @@ module.exports = async (meta_plans) => {
                 }
             ]
         };
+
+    if(_global_site) {
+        url = UPLOAD_PLAN_2;
+        data["target_plans"][0]["country"] = _account_region;
+    }
 
     try {
         let _data = await requestPost({url, headers, params, data});

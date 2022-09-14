@@ -1,8 +1,8 @@
 const save = require("./save");
-const { SLEEP_PER_PLAN, MAX_USERNAME_COUNT } = require("./config");
 const uploadPlan = require("./spiders/uploadPlan");
 const { sleepRandom } = require("./utils/request");
 const { initialize, getDatetime } = require("./utils/base");
+const { SLEEP_PER_PLAN, MAX_USERNAME_COUNT } = require("./config");
 const { checkProductIds, getMetaPlans } = require("./spiders/checkProductIds");
 
 
@@ -49,7 +49,11 @@ let main = async () => {
 
 
 /**
-运行时, 如果弹出浏览器, 则需要手动登录;
-登录成功后, 不要手动关闭浏览器, 要等待浏览器自动退出
+【注】
+1. 运行时, 如果弹出浏览器, 则需要手动登录; 登录成功后, 不要手动关闭浏览器, 要等待浏览器自动退出。
+2. 如果 settings.json 中 area 的值以 “Global-” 开头, 则表示当前账号是全球站账号。
+3. 请确保 settings.json 中 area 的值是完全正确的; 例如全球站的马来西亚: "Global-Malaysia", 非全球站的马来西亚: "Malaysia"; 
+    不同国家的单词请参考 utils/constant.js。
  */
+
 main().then();

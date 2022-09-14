@@ -1,3 +1,4 @@
+const { GET_UID_1, GET_UID_2 } = require("./api");
 const { getHeaders, getParams, requestPost } = require("../utils/request");
 
 
@@ -14,7 +15,7 @@ module.exports = async (username) => {
      */
     let err_code = 0,
         user_id = "",
-        url = "https://affiliate.tiktok.com/api/v1/affiliate/creator/search",
+        url = GET_UID_1,
         headers = getHeaders(),
         params = getParams(),
         data = {
@@ -23,6 +24,11 @@ module.exports = async (username) => {
             "search_key": 4,
             "key_word": username,
         };
+
+    if (_global_site) {
+        url = GET_UID_2;
+        data["creator_region"] = _account_region;
+    }
 
     try {
         let _data = await requestPost({url, headers, params, data});
