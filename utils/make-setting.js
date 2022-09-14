@@ -31,7 +31,6 @@ module.exports = () => {
     console.error(`计划产品不足 ${uniq_products.length} / ${MAX_PRODUCT_COUNT}`)
   }
 
-  console.log(data_line)
   const settings = {
     area: data_line[0],
     shop: data_line[1],
