@@ -24,4 +24,8 @@ module.exports = {
     MAX_PRODUCT_COUNT: 100,
     // 第一个计划的索引(一般情况下保持默认值 0 即可)
     FIRST_PLAN_INDEX: 0,
+    // 同序号计划的最大上传失败次数
+    MAX_FAIL_TIMES: 5,
+    // 超时时间
+    TIMEOUT: 20 * 1000,
 }

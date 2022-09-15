@@ -2,8 +2,8 @@ const save = require("./save");
 const uploadPlan = require("./spiders/uploadPlan");
 const { sleepRandom } = require("./utils/request");
 const { initialize, getDatetime } = require("./utils/base");
-const { SLEEP_PER_PLAN, MAX_USERNAME_COUNT } = require("./config");
 const { checkProductIds, getMetaPlans } = require("./spiders/checkProductIds");
+const { SLEEP_PER_PLAN, MAX_USERNAME_COUNT, MAX_FAIL_TIMES } = require("./config");
 
 
 let main = async () => {
@@ -15,6 +15,7 @@ let main = async () => {
 
     await checkProductIds();                // 只需要对所有 product_id 检查一次即可
     let meta_plans = await getMetaPlans();
+    let _fail_times = 0;
 
     while (true) {
         if (_stop_plan_flag) {
@@ -26,8 +27,15 @@ let main = async () => {
         _current_plan += 1;
 
         let flag = await uploadPlan(meta_plans);
+
+        if (_fail_times > MAX_FAIL_TIMES) {
+            flag = 1;
+            _success_plan_count -= 1;
+        };
+
         if (flag === 1) {
             _success_plan_count += 1;
+            _fail_times = 0;
         } else if (flag === 2) {
             console.log(`\n---------- 计划已满, 程序即将退出 ----------\n`);
             _usernames_flag_1.splice(-MAX_USERNAME_COUNT, MAX_USERNAME_COUNT);
@@ -35,6 +43,7 @@ let main = async () => {
         } else {
             console.log(`\n---------- 上传计划请求失败 ----------\n`);
             _current_plan -= 1;
+            _fail_times += 1;
         }
 
         if (_current_plan >= _settings.maxPlanCount) {
@@ -54,6 +63,10 @@ let main = async () => {
 2. 如果 settings.json 中 area 的值以 “Global-” 开头, 则表示当前账号是全球站账号。
 3. 请确保 settings.json 中 area 的值是完全正确的; 例如全球站的马来西亚: "Global-Malaysia", 非全球站的马来西亚: "Malaysia"; 
     不同国家的单词请参考 utils/constant.js。
+
+全球站账号密码:
+    huanliuxiaodian03@outlook.com
+    Imhama4262!!
  */
 
 main().then();

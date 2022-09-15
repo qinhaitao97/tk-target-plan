@@ -44,10 +44,10 @@ module.exports = async (meta_plans) => {
     try {
         let _data = await requestPost({url, headers, params, data});
         console.log(_data);
-        if (Array.isArray(_data.logic_plan_ids) && _data.logic_plan_ids.length > 0) {
+        if ((Array.isArray(_data.logic_plan_ids) && _data.logic_plan_ids.length > 0) || _data.message.includes("RPCError")) {
             flag = 1;
             _failed_user_ids = null;
-        } else if((String(_data.message).indexOf("CreateTargetPlanTooOften") !== -1) || (String(_data.message).indexOf("too many") !== -1)) {
+        } else if(_data.message.includes("CreateTargetPlanTooOften") || _data.message.includes("too many")) {
             flag = 2;
             _failed_user_ids = null;
         } else {

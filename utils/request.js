@@ -1,6 +1,6 @@
 const superagent = require("superagent");
 require("superagent-proxy")(superagent);
-const { VPN_HOST, VPN_PORT } = require("../config");
+const { VPN_HOST, VPN_PORT, TIMEOUT } = require("../config");
 const { ORIGIN_1, ORIGIN_2, REFERER_1, REFERER_2 } = require("../spiders/api");
 
 
@@ -56,7 +56,7 @@ module.exports = {
             .set(options.headers)
             .query(options.params)
             .send(JSON.stringify(options.data))
-            .timeout({deadline: 20 * 1000});
+            .timeout({deadline: TIMEOUT});
         if (!_global_site && VPN_HOST && VPN_PORT) {
             promise = promise.proxy(`socks5h://${VPN_HOST}:${VPN_PORT}`);
         }
@@ -68,7 +68,7 @@ module.exports = {
             .get(options.url)
             .set(options.headers)
             .query(options.params)
-            .timeout({deadline: 20 * 1000});
+            .timeout({deadline: TIMEOUT});
         if (!_global_site && VPN_HOST && VPN_PORT) {
             promise = promise.proxy(`socks5h://${VPN_HOST}:${VPN_PORT}`);
         }
