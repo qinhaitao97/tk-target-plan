@@ -5,7 +5,7 @@ module.exports = {
     "ORIGIN_2": "https://affiliate.tiktokglobalshop.com",
     "CHECK_COOKIE_1": "https://affiliate.tiktok.com/api/v1/affiliate/account/info?account_type=1&avatar_param[format]=webp&avatar_param[height]=84&avatar_param[width]=84",
     "CHECK_COOKIE_2": "https://api16-normal-useast1a.tiktokglobalshop.com/api/v1/affiliate/account/info?account_type=1&avatar_param[format]=webp&avatar_param[height]=84&avatar_param[width]=84",
-    "LOGIN_1": "https://seller.tiktok.com/account/login",
+    "LOGIN_1": "https://seller.tiktok.com/",
     "LOGIN_2": "https://seller.tiktokglobalshop.com/account/login",
     "CHECK_PID_1": "https://affiliate.tiktok.com/api/v1/affiliate/product/search",
     "CHECK_PID_2": "https://api16-normal-useast1a.tiktokglobalshop.com/api/v1/affiliate/product/search",
