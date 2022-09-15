@@ -47,7 +47,7 @@ module.exports = async (meta_plans) => {
         if (Array.isArray(_data.logic_plan_ids) && _data.logic_plan_ids.length > 0) {
             flag = 1;
             _failed_user_ids = null;
-        } else if(String(_data.message).indexOf("CreateTargetPlanTooOften") !== -1) {
+        } else if((String(_data.message).indexOf("CreateTargetPlanTooOften") !== -1) || (String(_data.message).indexOf("too many") !== -1)) {
             flag = 2;
             _failed_user_ids = null;
         } else {
